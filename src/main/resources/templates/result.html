@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>功能</title>
+	<style type="text/css">
+	html,body{
+		background-image:url("result-image.jpg");
+		height: 100%;
+		width: 100%;
+		background-size:cover;
+		background-repeat: no-repeat;
+	}
+	*{
+	   margin: 0;
+	   padding: 0;
+	        }
+	body {
+	    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+	}
+	select{margin:5px   0;}
+    label{
+		
+		font-size: medium;
+		color: white;		
+	}
+	.one{
+	    position: absolute;
+	    top:  40%;
+	    left: 14.8%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.two{
+	    position: absolute;
+	    top:45%;
+	    left:14.6%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.three{
+	    position: absolute;
+	    top:50%;
+	    left:14.6%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.four{
+	    position: absolute;
+	    top:55%;
+	    left:21%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.five{
+	    position: absolute;
+	    top:60%;
+	    left:21%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.six{
+	    position: absolute;
+	    top:65%;
+	    left:15.7%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	.seven{
+	    position: absolute;
+	    top:80%;
+	    left:50%;
+	    -webkit-transform: translate(-50%, -50%);
+	    -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	    -o-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+		width:  500px;
+		height: 500px;
+	}
+	input[type=submit]{
+
+		  width: 30%;
+		  background-color: #4CAF50;
+		  color: white;
+		  padding: 6px 10px;
+		  margin: 8px 0;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		
+	}	
+	</style>
+</head>
+<style>
+    body {text-align: center}
+    div {
+        margin-top: 50px;
+
+        }
+</style>
+<body>
+
+
+   <div class="one">
+
+
+           <form class="my_test" name="form" method="get" action="/orderByDistance">
+
+               <label class="label">
+              1.按照距离排序:
+			  <input type="submit" value="distance">
+			  <select name="select">
+                       <option value="bigger">递增</option>
+                       <option value="smaller">递减</option>
+                </select>
+               </label>
+           </form>
+
+     </div>
+    <div class="two">
+	 
+       <form name="form" method="get" action="/orderByPrice">
+		   <label>		   
+           2.按照房租排序:
+		   <input type="submit" value="Price">
+           <select name="select">
+                   <option value="bigger">递增</option>
+                   <option value="smaller">递减</option>
+            </select>
+           </label>
+       </form>
+    </div>
+<div class="three">
+	
+
+       <form name="form" method="get" action="/orderBySize">
+		<label>
+          3.按照面积排序：<input type="submit" value="Size">
+               <select name="select">
+                   <option value="bigger">递增</option>
+                   <option value="smaller">递减</option>
+               </select>
+           </label>
+       </form>
+</div>
+<div class="four">
+
+       <form name="form" method="get" action="/selectByShape">
+           <label>
+                  4.按照户型搜索结果:
+               <select name="bedroom">
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+               </select>
+               室
+           </label>
+           <label>
+               <select name="livingroom">
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+               </select>
+               厅
+           </label>
+           <label>
+               <select name="bathroom">
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+               </select>
+               卫
+           </label>
+           <input type="submit" value="搜索">
+       </form>
+</div>
+
+<div class="five">
+       <form method="get" action="/selectByPrice">
+           <label>
+           5.价格在:<input type="number" name="price" >元/每月之内
+               <input type="submit" value="搜索">
+           </label>
+       </form>
+</div>			   
+<div class="six">
+	<form action="/evaluate" method="get">
+		<label>
+          6.试试我们的智能推荐吧 <input type="submit" value="智能推荐">
+        </label>
+    </form>	
+</div>	
+<div class="seven">	
+    <form action="/back">
+		  <input type="submit" value="返回">
+    </form>
+</div>
+
+   <script src="js/theme.js?v=1.0.0"></script>
+   <script src="https://res.zzzmh.cn/live2d/js/l2dwidget.min.js"></script>
+   <script type="text/javascript">
+       var config = {
+           model: {
+               jsonPath: 'https://res.zzzmh.cn/live2d/model/hijiki/assets/hijiki.model.json',
+           },
+           display: {
+               superSample: 1,
+               width: 245,
+               height: 245,
+               position: 'right',
+               hOffset: 0,
+               vOffset: 0,
+           },
+           mobile: {
+               show: false,
+               scale: 1,
+               motion: false,
+           },
+           react: {
+               opacityDefault: 1,
+               opacityOnHover: 0.75
+           }
+       };
+       L2Dwidget.init(config);
+   </script>
+   <script type="text/javascript">
+       $(function () {
+           // 标签分类
+           $('#tagsBar li a').click(function () {
+               $('#tagsBar li a').removeClass('active');
+               $(this).addClass('active');
+               postMasonry($(this).attr('data-filter') == 'all' ? null : '.' + $(this).attr('data-filter'));
+               setTimeout(imageLazyLoad,1500);
+           });
+
+           setTimeout(imageLazyLoad,1500);
+
+           $(window).bind("scroll", function (event) {
+               imageLazyLoad();
+           });
+       });
+   </script>
+</body>
+</html>

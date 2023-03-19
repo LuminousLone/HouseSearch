@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.houseSearch.mapper.selectMapper">
+    <!-- 修改对应方式-->
+    <resultMap id="house" type="com.example.houseSearch.bean.House">
+        <result property="name" column="House_name" />
+        <result property="position" column="house_position" />
+        <result property="today" column="Today" />
+        <result property="price" column="Price"/>
+        <result property="height" column="Height"/>
+        <result property="size" column="Size" />
+        <result property="distance" column="Distance"/>
+        <result property="destination" column="Destination" />
+        <result property="shape" column="Shape" />
+    </resultMap>
+
+    <select id="getSearchByShape" resultMap="house" >
+        select * from house where Today = #{today} and Destination = #{destination} and Shape = #{shape}
+    </select>
+
+    <select id="getSearchByPrice" resultMap="house" >
+        select * from house where Today = #{today} and Destination = #{destination} and Price &lt;=  #{price} order by Price
+    </select>
+
+    <select id="getThisAll" resultMap="house">
+        select * from house where Today = #{today} and Destination = #{destination}
+    </select>
+
+    <select id="getOddByDistance" resultMap="house">
+        select * from house where Distance = #{distance} and Destination = #{destination} and Today &lt; #{today}
+    </select>
+
+</mapper>

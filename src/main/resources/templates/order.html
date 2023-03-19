@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title th:text="${title}">结果</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<style type="text/css">
+		html,body{
+			background-image: url("order-image.jpg");
+			height: 100%;
+			width: 100%;
+			background-size:cover;
+			background-repeat: no-repeat;
+            text-align: center;
+
+		}
+		*{
+		   margin: 0;
+		   padding: 0;
+		        }
+         table{
+             margin: auto;
+         }
+        .center-in-center{
+            position: absolute;
+            top:  60%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width:  500px;
+            height: 500px;
+        }
+	</style>
+</head>
+
+<script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=3HRBZ-5NUWK-65VJN-AARKC-QN6XJ-GDFDS" ></script>
+<style type="text/css">
+
+    #container {
+        width: 70%;
+        height: 70%;
+    }
+
+
+
+</style>
+
+<body>
+
+<div>
+
+</div>
+
+<h1> 结果如下：</h1>
+
+
+
+<div class="tableShow">
+    <table id="houses" class="tableShow" style="font-size: medium"></table>
+</div>
+
+
+<div id="container"  class="center-in-center">
+    <input type="button" onclick="loadMap()" value="加载地图" style="align-self: auto">
+</div>
+
+<script th:inline="javascript">
+
+  const result =  /*[[${result}]]*/{};
+
+  const myMap =/*[[${map}]]*/{};
+
+  const myPlace = /*[[${place}]]*/{};
+
+    console.log(myMap.length)
+    console.log(result.length)
+
+
+  const  tableHeaders = " <tr>  <th> 名称 </th> <th> 价格 (元/月) </th> <th> 面积 (㎡)</th> <th> 楼高 (层)</th>" +
+          " <th>户型 </th> <th> 位置 </th>  <th> 距离 (米) </th> </tr>";
+
+  let houseHTML ="";
+
+  houseHTML += tableHeaders;
+
+  const houseRow = " <tr>  <td> NAME </td> <td> PRICE </td> <td> SIZE </td> <td> HEIGHT </td>  <td> SHAPE </td>" +
+          " <td> POSITION </td> <td> DISTANCE </td> </tr>";
+
+  function getReplace(house) {
+
+    let thisHouseHTML = houseRow;
+
+    thisHouseHTML = thisHouseHTML.replace("NAME",house.name);
+    thisHouseHTML = thisHouseHTML.replace("PRICE",house.price);
+    thisHouseHTML = thisHouseHTML.replace("SIZE",house.size);
+    thisHouseHTML = thisHouseHTML.replace("HEIGHT",house.height);
+    thisHouseHTML = thisHouseHTML.replace("SHAPE",house.shape);
+    thisHouseHTML = thisHouseHTML.replace("POSITION",house.position);
+    thisHouseHTML = thisHouseHTML.replace("DISTANCE",house.distance);
+
+    houseHTML += thisHouseHTML;
+      
+  }
+
+  function load() {
+
+      for(let i=0;i<result.length;i++){
+          getReplace(result[i]);
+
+      }
+
+   document.getElementById("houses").innerHTML = houseHTML;
+      
+  }
+
+  // 修改地图中心，传入位置数据
+
+  function loadMap() {
+
+      let c_lat=39.950771;
+      let c_lng=116.320549;
+
+      for (let i = 0; i < myMap.length; i++) {
+          console.log(myMap[i].position);
+          console.log(myPlace);
+          if( myMap[i].position === myPlace){
+             c_lat = myMap[i].lat;
+             c_lng = myMap[i].lng;
+
+          }
+      }
+      // 初始化地图
+      console.log(c_lat);
+      console.log(c_lng);
+      var map = new TMap.Map('container', {
+          zoom: 11, // 设置地图缩放
+          center: new TMap.LatLng(c_lat, c_lng), // 设置地图中心点坐标，
+          //      pitch: 100, // 俯仰度
+          //     rotation: 200, // 旋转角度
+      });
+
+      // MultiMarker文档地址：https://lbs.qq.com/webApi/javascriptGL/glDoc/glDocMarker
+      var markerLayer = new TMap.MultiMarker({
+          map: map,
+          styles: {
+              // 点标记样式
+              marker: new TMap.MarkerStyle({
+                  width: 20, // 样式宽
+                  height: 30, // 样式高
+                  anchor: { x: 10, y: 30 }, // 描点位置
+                  src: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png', // 标记路径
+              }),
+          },
+          // geometries: [
+          //     // 点标记数据数组
+          //
+          // ],
+      });
+
+      for (let i = 0; i < result.length; i++) {
+          let L_x = 39.94616;
+          let L_y = 116.31622;
+          for (let j = 0; j < myMap.length; j++) {
+              if( result[i].position === myMap[j].position ){
+                  L_x = myMap[j].lat;
+                  L_y = myMap[j].lng;
+              }
+          }
+          markerLayer.add([{position:new TMap.LatLng(L_x,L_y)}]);
+      }
+
+      // console.log(markerLayer.geometries.length)
+      //
+      // var markerLayer2 = new TMap.MultiMarker({
+      //     map: map,
+      //     styles: {
+      //         // 点标记样式
+      //         marker: new TMap.MarkerStyle({
+      //             width: 20, // 样式宽
+      //             height: 30, // 样式高
+      //             anchor: { x: 10, y: 30 }, // 描点位置
+      //             src: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png', // 标记路径
+      //         }),
+      //     },
+      //     geometries: markerLayer.geometries
+      //         // 点标记数据数组
+      //
+      // });
+
+
+  }
+
+
+  load();
+
+
+
+</script>
+
+<script src="js/theme.js?v=1.0.0"></script>
+<script src="https://res.zzzmh.cn/live2d/js/l2dwidget.min.js"></script>
+<script type="text/javascript">
+    var config = {
+        model: {
+            jsonPath: 'https://res.zzzmh.cn/live2d/model/hijiki/assets/hijiki.model.json',
+        },
+        display: {
+            superSample: 1,
+            width: 245,
+            height: 245,
+            position: 'right',
+            hOffset: 0,
+            vOffset: 0,
+        },
+        mobile: {
+            show: false,
+            scale: 1,
+            motion: false,
+        },
+        react: {
+            opacityDefault: 1,
+            opacityOnHover: 0.75
+        }
+    };
+    L2Dwidget.init(config);
+</script>
+<script type="text/javascript">
+    $(function () {
+        // 标签分类
+        $('#tagsBar li a').click(function () {
+            $('#tagsBar li a').removeClass('active');
+            $(this).addClass('active');
+            postMasonry($(this).attr('data-filter') == 'all' ? null : '.' + $(this).attr('data-filter'));
+            setTimeout(imageLazyLoad,1500);
+        });
+
+        setTimeout(imageLazyLoad,1500);
+
+        $(window).bind("scroll", function (event) {
+            imageLazyLoad();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

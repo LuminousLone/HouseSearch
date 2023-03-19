@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.houseSearch.mapper.selectUserMapper">
+
+    <resultMap id="user" type="com.example.houseSearch.bean.User">
+        <result property="Name" column="User_name" />
+        <result property="Password" column="User_password"/>
+    </resultMap>
+
+    <select id="getAllUser" resultMap="user">
+        select * from Users
+    </select>
+
+    <insert id="insertUser">
+        insert into Users values (#{name},#{password})
+    </insert>
+
+</mapper>

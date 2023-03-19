@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>智能房源查找系统</title>
+	<script>
+	 	alert(" 登陆成功！欢迎使用智能房源查找系统！！");
+	</script>
+	 <style type="text/css">
+	
+	html,body{
+			background-image: url("orderTest.jpg");
+			height: 100%;
+			width: 100%;
+			background-size:cover;
+			background-repeat: no-repeat;
+		}
+		*{
+		   margin: 0;
+		   padding: 0;
+		        }	
+		body {
+		    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+		}
+		.center-in-center{
+            text-align: left;
+		    position: absolute;
+		    top:  70%;
+		    left: 50%;
+		    -webkit-transform: translate(-50%, -50%);
+		    -moz-transform: translate(-50%, -50%);
+		    -ms-transform: translate(-50%, -50%);
+		    -o-transform: translate(-50%, -50%);
+		    transform: translate(-50%, -50%);
+			width:  500px;
+			height: 500px;
+		}
+		input[type=submit]{
+
+			  width: 50%;
+			  background-color: #4CAF50;
+			  color: white;
+			  padding: 6px 10px;
+			  margin: 8px 0;
+			  border: none;
+			  border-radius: 4px;
+			  cursor: pointer;
+			
+		}
+    input[type=text]{
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url("searchicon.png");
+        background-position: 8px 8px;
+        background-repeat: no-repeat;
+        padding: 6px 10px 6px 20px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    input[type=text]:focus {
+        width: 100%;
+    }
+	 </style>
+</head>
+<style>
+    body {text-align: center}
+</style>
+
+<body>
+<!-- <p> 登陆成功！欢迎使用智能房源查找系统！！</p> -->
+<div class="center-in-center">
+
+<form name="form" method="post" action="/search">
+    <label style="font-size: small; font-family: comic sans ms ; font-weight: bolder; color: firebrick" >
+<!--        请输入查找地点(小区、学校、标志性建筑等)：-->
+        <input name="search" type="text" placeholder="请输入查找地点(小区、学校、标志性建筑等)：">
+    </label> <br>
+    <label style="font-size: small; font-family: comic sans ms; font-weight: bolder;color: firebrick">
+        请选择房源城区(选择后查找更准确哦！):
+        <select name="select">
+            <option value="nothing">不限</option>
+            <option value="dongcheng">东城区</option>
+            <option value="xicheng">西城区</option>
+            <option value="chaoyang">朝阳区</option>
+            <option value="haidian">海淀区</option>
+            <option value="fengtai">丰台区</option>
+            <option value="shijingshan">石景山区</option>
+            <option value="tongzhou">通州区</option>
+            <option value="changping">昌平区</option>
+            <option value="daxing">大兴区</option>
+            <option value="shunyi">顺义区</option>
+            <option value="fangshan">房山区</option>
+            <option value="pinggu">平谷区</option>
+            <option value="huairou">怀柔区</option>
+            <option value="miyun">密云区</option>
+            <option value="yanqing">延庆区</option>
+        </select>
+    </label>
+    <input type="submit" value="提交">
+</form>
+</div>
+
+<script src="js/theme.js?v=1.0.0"></script>
+<script src="https://res.zzzmh.cn/live2d/js/l2dwidget.min.js"></script>
+<script type="text/javascript">
+    var config = {
+        model: {
+            jsonPath: 'https://res.zzzmh.cn/live2d/model/hijiki/assets/hijiki.model.json',
+        },
+        display: {
+            superSample: 1,
+            width: 245,
+            height: 245,
+            position: 'right',
+            hOffset: 0,
+            vOffset: 0,
+        },
+        mobile: {
+            show: false,
+            scale: 1,
+            motion: false,
+        },
+        react: {
+            opacityDefault: 1,
+            opacityOnHover: 0.75
+        }
+    };
+    L2Dwidget.init(config);
+</script>
+<script type="text/javascript">
+    $(function () {
+        // 标签分类
+        $('#tagsBar li a').click(function () {
+            $('#tagsBar li a').removeClass('active');
+            $(this).addClass('active');
+            postMasonry($(this).attr('data-filter') == 'all' ? null : '.' + $(this).attr('data-filter'));
+            setTimeout(imageLazyLoad,1500);
+        });
+
+        setTimeout(imageLazyLoad,1500);
+
+        $(window).bind("scroll", function (event) {
+            imageLazyLoad();
+        });
+    });
+</script>
+
+
+</body>
+</html>

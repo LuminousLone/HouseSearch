@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.houseSearch.mapper.LongLatMapper">
+    <resultMap id="LongLat" type="com.example.houseSearch.bean.LongLat">
+        <result property="Position" column="House_position"/>
+        <result property="Lat" column="Lat" />
+        <result property="Lng" column="Lng"/>
+     </resultMap>
+
+    <select id="getAll" resultMap="LongLat">
+        select * from Location
+    </select>
+
+</mapper>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>智能房源搜索系统</title>
+    <style type="text/css">
+        html,body{
+            background-image:url("index-image.jpg");
+            height: 100%;width: 100%;
+            background-size:cover;
+            background-repeat: no-repeat;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .center-in-center{
+            position: absolute;
+            top:  60%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width:  500px;
+            height: 500px;
+        }
+        input[type=text]{
+
+        //background-image: url('https://static.runoob.com/images/mix/searchicon.png');
+        //background-position: 10px 5px;
+        // background-repeat: no-repeat;
+            width: 20rem;
+            height:0.5rem;
+            padding: 6px 10px;
+
+        }
+        input[type=password]{
+
+        //background-image: url("https://static.runoob.com/images/mix/searchicon.png");
+        //background-position: 10px 5px;
+        // background-repeat: no-repeat;
+            width: 20rem;
+            height:0.5rem;
+            padding: 6px 10px;
+
+        }
+        input[type=submit]{
+
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<style type="text/css">
+    html,body {
+        text-align: center
+
+    }
+    div {
+        margin-top: 50px;
+
+    }
+    div#div1 > img {
+        height:100%;
+        width:100%;
+        border:0;
+    }
+    div#authorization_box,div#auth_confirm {
+        marguin:0 auto;
+        overflow:hidden;
+    }
+    div#authorization_box {
+        position:fixed;
+        top:50%;
+        left:50%;
+
+        padding:10px;
+    }
+</style>
+<body>
+<!-- <img src="./index-image/index-image.jpg" > -->
+
+<h1> 欢迎使用智能房源搜索系统！</h1>
+<div id="auth_confirm">
+
+
+    <form method="post" action="/login">
+
+        <label>
+            username：<input type="text" name="username"> <br>
+            <br>
+            password：<input type="password" name="password"> <br>
+            <input type="submit" value="登录" style="width: auto;">
+        </label>
+
+    </form>
+    <form action="/goRegister">
+        <label>
+            还未拥有账号?注册一个吧！
+            <input type="submit" value="注册" style="width: auto">
+        </label>
+    </form>
+</div>
+
+<script src="js/theme.js?v=1.0.0"></script>
+<script src="https://res.zzzmh.cn/live2d/js/l2dwidget.min.js"></script>
+<script type="text/javascript">
+    var config = {
+        model: {
+            jsonPath: 'https://res.zzzmh.cn/live2d/model/hijiki/assets/hijiki.model.json',
+        },
+        display: {
+            superSample: 1,
+            width: 245,
+            height: 245,
+            position: 'right',
+            hOffset: 0,
+            vOffset: 0,
+        },
+        mobile: {
+            show: false,
+            scale: 1,
+            motion: false,
+        },
+        react: {
+            opacityDefault: 1,
+            opacityOnHover: 0.75
+        }
+    };
+    L2Dwidget.init(config);
+</script>
+<script type="text/javascript">
+    $(function () {
+        // 标签分类
+        $('#tagsBar li a').click(function () {
+            $('#tagsBar li a').removeClass('active');
+            $(this).addClass('active');
+            postMasonry($(this).attr('data-filter') == 'all' ? null : '.' + $(this).attr('data-filter'));
+            setTimeout(imageLazyLoad,1500);
+        });
+
+        setTimeout(imageLazyLoad,1500);
+
+        $(window).bind("scroll", function (event) {
+            imageLazyLoad();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
